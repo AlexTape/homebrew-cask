@@ -1,19 +1,20 @@
-cask :v1 => 'electron' do
-  version '0.35.0'
-  sha256 '7ef9be84f464b32db6602fc187ee4cdf9f2d1af1bb5df84646a1526cf34f958a'
+cask 'electron' do
+  version '1.7.12'
+  sha256 'c6d67ed023c5187fb3f8881d3f7ccfbc3bff1edea8098edb5b5e8efe0b4926dc'
 
-  url "https://github.com/atom/electron/releases/download/v#{version}/electron-v#{version}-darwin-x64.zip"
-  appcast 'https://github.com/atom/electron/releases.atom',
-          :sha256 => '7b76ea4d7bdef5fc980632b829f8cfd8e81c96dec755ccb1ca1416d9ba6c89ea'
+  # github.com/electron/electron was verified as official when first introduced to the cask
+  url "https://github.com/electron/electron/releases/download/v#{version}/electron-v#{version}-darwin-x64.zip"
+  appcast 'https://github.com/electron/electron/releases.atom',
+          checkpoint: 'bd0415f32b21553786cc3781e4d30cc627a2688e6e7380c353c26ee376b93ea7'
   name 'Electron'
-  homepage 'http://electron.atom.io/'
-  license :mit
+  homepage 'https://electron.atom.io/'
 
   app 'Electron.app'
-  binary 'Electron.app/Contents/MacOS/Electron', :target => 'electron'
 
-  caveats <<-EOS.undent
-    Starting #{token} applications with the symlink (e.g. from the terminal)
-    will cause the app not to accept user input, use the full path instead
-  EOS
+  zap trash: [
+               '~/Library/Application Support/Electron',
+               '~/Library/Caches/Electron',
+               '~/Library/Preferences/com.github.electron.helper.plist',
+               '~/Library/Preferences/com.github.electron.plist',
+             ]
 end

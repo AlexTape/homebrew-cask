@@ -1,12 +1,19 @@
-cask :v1 => 'skyfonts' do
-  version '4.10.0.0'
-  sha256 'a0186bdde3f1abccef35a9be32ce139bd5e61b428cf5efabaacc194a52a0d4b0'
+cask 'skyfonts' do
+  version '5.9.2.1'
+  sha256 '58eab505b64d025207d1b418ac3bbe23b68a413b81af74ad9d279964046a280d'
 
-  # skyfonts.com is the official download host per the vendor homepage
   url "http://cdn1.skyfonts.com/client/Monotype_SkyFonts_Mac64_#{version}.dmg"
+  appcast 'https://www.fonts.com/other/skyfonts/getskyfontsclientdownloadinfo',
+          checkpoint: '7b40834d20dbe6b093e403e15b0ebfc31f7596ca6183bdbb302400ebd0eb35cd'
   name 'SkyFonts'
-  homepage 'https://www.fonts.com/web-fonts/google'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://skyfonts.com/'
 
-  app 'SkyFonts.app'
+  installer manual: 'SkyFonts.app'
+
+  uninstall quit:      [
+                         'com.mti.Monotype-SkyFonts',
+                         'com.mti.Monotype-SkyFontsHelper',
+                       ],
+            launchctl: 'com.mti.Monotype-SkyFontsHelper',
+            delete:    '/Applications/Skyfonts'
 end

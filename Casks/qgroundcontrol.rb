@@ -1,12 +1,13 @@
-cask :v1 => 'qgroundcontrol' do
-  version '2.5.2'
-  sha256 'b42f6e3de99250a86c9cb5860c8477ee449d5f81f06d32c04f564596198f0b83'
+cask 'qgroundcontrol' do
+  version '3.2.7'
+  sha256 '14d2cd2487554b89461e60a0bff4f335ae847927a40918944092a4ed09fe1e77'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://qgroundcontrol.s3.amazonaws.com/QGroundControl-Stable-V#{version}.dmg"
+  # github.com/mavlink/qgroundcontrol/releases/download was verified as official when first introduced to the cask
+  url "https://github.com/mavlink/qgroundcontrol/releases/download/v#{version}/QGroundControl.dmg"
+  appcast 'https://github.com/mavlink/qgroundcontrol/releases.atom',
+          checkpoint: 'd60cb67da1483476a59806fe7a8b45ba6d1d9fb54f9508f875c933f6d253d396'
   name 'QGroundControl'
-  homepage 'http://qgroundcontrol.org'
-  license :gpl
+  homepage 'http://qgroundcontrol.com/'
 
   app 'qgroundcontrol.app'
 end

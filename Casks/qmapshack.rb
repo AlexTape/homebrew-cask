@@ -1,11 +1,12 @@
-cask :v1 => 'qmapshack' do
-  version '1.4.0'
-  sha256 '1e3c8d5eaf38b71fe4af7074152c1efb55bab9c0eb4a2b964cafc0033d47d9ca'
+cask 'qmapshack' do
+  version '1.10.0'
+  sha256 '8f37941c32d987d42f9d2d5ab80e3eee786c687a3cbbbd0d064d8a0b15a49d39'
 
   url "https://bitbucket.org/maproom/qmapshack/downloads/QMapShack-MacOSX_#{version}.tar.gz"
   name 'QMapShack'
   homepage 'https://bitbucket.org/maproom/qmapshack/wiki/Home'
-  license :gpl
+
+  depends_on macos: '>= :mountain_lion'
 
   app 'QMapShack.app'
 end

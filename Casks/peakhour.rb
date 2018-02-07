@@ -1,13 +1,26 @@
-cask :v1 => 'peakhour' do
-  version '3.1.1'
-  sha256 'fc26e821ba7bdb54103ba85cbc757b991ead197a67defd515d9de0c6b25e4530'
+cask 'peakhour' do
+  version '4.0.7,32822'
+  sha256 '8c66d7a574e286a56466029cb16e7844699821a2978ec5b29dc3c8a04cb1ffe8'
 
-  url "https://updates.peakhourapp.com/releases/PeakHour%20#{version}.zip"
-  appcast 'https://updates.peakhourapp.com/PeakHourAppcast.xml',
-          :sha256 => '26594bf49355f61236615666ab78f9c74d71c2dc20eec5cf35d5dc3a35d0e5c6'
+  url "https://updates.peakhourapp.com/releases/PeakHour%20#{version.before_comma}.zip"
+  appcast "https://updates.peakhourapp.com/PeakHour#{version.major}Appcast.xml",
+          checkpoint: '1433d418e0f63ea48466b3a4db5cf2f9097bb80eb12c1f92c1e71583eed72c5f'
   name 'PeakHour'
-  homepage 'https://www.peakhourapp.com'
-  license :commercial
+  homepage 'https://www.peakhourapp.com/'
 
-  app "PeakHour #{version.to_i}.app"
+  app "PeakHour #{version.major}.app"
+
+  uninstall launchctl: "com.digitician.peakhour#{version.major}.launchAtLoginHelper",
+            quit:      "com.digitician.peakhour#{version.major}"
+
+  zap trash: [
+               "~/Library/Application Scripts/com.digitician.peakhour#{version.major}.launchAtLoginHelper",
+               "~/Library/Application Support/com.digitician.peakhour#{version.major}",
+               '~/Library/Application Support/PeakHour*',
+               "~/Library/Caches/com.digitician.peakhour#{version.major}",
+               "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.digitician.peakhour#{version.major}",
+               "~/Library/Containers/com.digitician.peakhour#{version.major}.launchAtLoginHelper",
+               "~/Library/Cookies/com.digitician.peakhour#{version.major}.binarycookies",
+               "~/Library/Preferences/com.digitician.peakhour#{version.major}.plist",
+             ]
 end

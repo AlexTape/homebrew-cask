@@ -1,14 +1,21 @@
-cask :v1 => 'rekordbox' do
-  version '3.2.2'
-  sha256 'f12cafb0764177bafbb267342c3bd367572c42cc9e340081a0e84ef2bf7ed433'
+cask 'rekordbox' do
+  version '5.1.1.0001'
+  sha256 '8f5d547c4e55b81ef96f9c963beea002e9f86efa206723f523e655e6ad5385ca'
 
-  url "http://rekordbox.com/_app/files/Install_rekordbox_#{version.gsub('.','_')}.pkg.zip"
+  url "https://rekordbox.com/_app/files/Install_rekordbox_#{version.dots_to_underscores}.pkg.zip"
   name 'rekordbox'
-  homepage 'http://rekordbox.com/en/'
-  license :closed
+  homepage 'https://rekordbox.com/en/'
 
-  pkg "Install_rekordbox_#{version.gsub('.','_')}.pkg"
+  auto_updates true
+  depends_on macos: '>= :yosemite'
 
-  uninstall :pkgutil => 'com.pioneer.rekordbox.*',
-            :delete  => '/Applications/rekordbox 3/'
+  pkg "Install_rekordbox_#{version.dots_to_underscores}.pkg"
+
+  uninstall pkgutil: "com.pioneer.rekordbox.#{version.major}.*",
+            delete:  "/Applications/rekordbox #{version.major}"
+
+  zap trash: [
+               '~/Library/Application Support/Pioneer/rekordbox',
+               '~/Library/Pioneer/rekordbox',
+             ]
 end

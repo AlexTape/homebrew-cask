@@ -1,12 +1,13 @@
-cask :v1 => 'instead' do
-  version '2.2.0'
-  sha256 'cde4a7d23ec3556baf98d73bfc5d2b8add3fad22cd5eb52a2d5c408ecc73aa73'
+cask 'instead' do
+  version '3.1.2'
+  sha256 '880d2e8f77a99cab8bac110cfb8473acf951c87b2bc26f8ac81870537e4174ae'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/instead/instead/#{version}/Instead-#{version}.dmg"
+  # sourceforge.net/instead was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/instead/instead/#{version}/Instead-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/instead/rss?path=/instead',
+          checkpoint: 'b0bb1b1c52f94f3661376bee867fea09f538a2ef0c5674b3f9acacc7364cdd0a'
   name 'INSTEAD'
-  homepage 'http://instead.syscall.ru/'
-  license :mit
+  homepage 'https://instead.syscall.ru/index.html'
 
   app 'Instead.app'
 end

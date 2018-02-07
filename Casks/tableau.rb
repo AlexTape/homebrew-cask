@@ -1,11 +1,24 @@
-cask :v1 => 'tableau' do
-  version :latest
-  sha256 :no_check
+cask 'tableau' do
+  version '10.5.0'
+  sha256 '80ccbd1264bdc51bfd4bfc3db4bc8aaa366c921e683ece8df5791424f8222057'
 
-  url 'https://downloads.tableausoftware.com/tssoftware/TableauDesktop.dmg'
-  name 'Tableau'
-  homepage 'https://www.tableausoftware.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.tableau.com/tssoftware/TableauDesktop-#{version.dots_to_hyphens}.dmg"
+  name 'Tableau Desktop'
+  homepage 'https://public.tableau.com/s/'
 
-  app 'Tableau.app'
+  depends_on macos: '>= :yosemite'
+
+  pkg 'Tableau Desktop.pkg'
+
+  uninstall pkgutil: [
+                       'com.amazon.redshiftodbc',
+                       'simba.sparkodbc',
+                       'com.simba.sqlserverodbc',
+                       'com.tableausoftware.Desktop.app',
+                       'com.tableausoftware.DesktopShortcut',
+                       'com.tableausoftware.FLEXNet.11.14.0',
+                       'com.tableausoftware.mysql',
+                       'com.tableausoftware.oracle',
+                       'com.tableausoftware.postgresql',
+                     ]
 end

@@ -1,15 +1,14 @@
-cask :v1 => 'firestormos' do
-  version '4.6.9.42974'
-  sha256 '423c7f6f0d262153fa655fd8a39b6d56c22744c57dfc2d7972bf4bf94d612459'
+cask 'firestormos' do
+  version '5.0.7.52912'
+  sha256 'e696ec2ef30f2af6de576bc2640602db19b35e011cedf6d933e3fa901d9aa224'
 
-  url "http://downloads.firestormviewer.org/mac/Phoenix-FirestormOS-Releasex64-#{version.gsub('.','-')}.dmg"
+  url "http://downloads.firestormviewer.org/mac/Phoenix-FirestormOS-Releasex64-#{version.dots_to_hyphens}.dmg"
   name 'Phoenix Firestorm viewer for Second Life'
-  homepage 'http://www.firestormviewer.org'
-  license :oss
+  homepage 'http://www.firestormviewer.org/'
 
   app 'FirestormOS-Releasex64.app'
 
-  caveats <<-EOS.undent
+  caveats <<~EOS
     This version does not contain Havok engine (does not matter if you're not a content creator).
     Most problems that crop up during updates can be resolved or fixed by performing a clean install:
 

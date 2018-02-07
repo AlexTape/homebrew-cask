@@ -1,21 +1,19 @@
-cask :v1 => 'haskell-platform' do
-  if MacOS.release <= :yosemite
-    version '7.10.2-a'
-    sha256 'dd1b64ecec95178044e12a08d9038f1e2156bbd51537da07b18832531b637672'
-  else
-    version '7.10.2-a1'
-    sha256 '80b1c550e8c6f0a0ffbced9aee8d77956a1246e74934c9baeff355fd4cc9b8a8'
-  end
+cask 'haskell-platform' do
+  version '8.2.2'
+  sha256 '24d6ec3a30e06a6484108a6f6ca01a3260b1aadcef2ba4c4404348945ad77b92'
 
-  url "https://www.haskell.org/platform/download/#{version.sub(%r{-.*},'')}/Haskell%20Platform%20#{version}%2064bit-signed.pkg"
+  url "https://haskell.org/platform/download/#{version}/Haskell%20Platform%20#{version}%20Full%2064bit-signed.pkg"
+  appcast 'https://github.com/haskell/haskell-platform/releases.atom',
+          checkpoint: '7eb030d6bca927ea8cb39a42191efc44a407bda40b2cae74816fa35db0a0683c'
   name 'Haskell Platform'
   homepage 'https://www.haskell.org/platform/'
-  license :bsd
 
-  pkg "Haskell Platform #{version} 64bit-signed.pkg"
+  pkg "Haskell Platform #{version} Full 64bit-signed.pkg"
 
-  uninstall :script => { :executable => '/Library/Haskell/bin/uninstall-hs', :args => %w[all --remove] },
-            :pkgutil => 'org.haskell.HaskellPlatform.*'
-
-  depends_on :macos => '>= :snow_leopard'
+  uninstall script:  {
+                       executable: '/Library/Haskell/bin/uninstall-hs',
+                       args:       ['all', '--remove'],
+                       sudo:       true,
+                     },
+            pkgutil: 'org.haskell.HaskellPlatform.*'
 end

@@ -1,17 +1,14 @@
-cask :v1 => 'panoply' do
-  version '4.3.2'
-  sha256 'c25076bf62d367cb10f22b0a86249a9989f7b9ca91ff9a392585471c67bd9a3a'
+cask 'panoply' do
+  version '4.8.8'
+  sha256 '211ef402d694eceee51cd0b65fc38f8dfc36b641abdcea9b7263376b71fa82c6'
 
-  url "http://www.giss.nasa.gov/tools/panoply/PanoplyOSX-#{version}.dmg"
+  url "https://www.giss.nasa.gov/tools/panoply/download/PanoplyMacOS-#{version}.dmg"
   name 'Panoply netCDF, HDF and GRIB Data Viewer'
-  name 'Panoply'
-  homepage 'http://www.giss.nasa.gov/tools/panoply/'
-  license :closed
+  homepage 'https://www.giss.nasa.gov/tools/panoply/'
 
   app 'Panoply.app'
 
-  caveats <<-EOS.undent
-    #{token} requires Java 7+, you can install the latest Java using
-      brew cask install java
-  EOS
+  caveats do
+    depends_on_java('8+')
+  end
 end

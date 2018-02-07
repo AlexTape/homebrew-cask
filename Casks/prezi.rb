@@ -1,12 +1,11 @@
-cask :v1 => 'prezi' do
-  version '5.2.7'
-  sha256 '4ed9c0cc71edd5946bd186cd7fe2f9dda3fcbd1cb39d10584f8510171b0af3b5'
+cask 'prezi' do
+  version '6.8.30'
+  sha256 '332137a21b5cbb23d996ba06169b5ddd8e9fba15454e5527b3c0db01adde74fc'
 
-  # akamaihd.net is the official download host per the vendor homepage
-  url "https://prezi-a.akamaihd.net/desktop/Prezi#{version}.dmg"
+  # prezi-a.akamaihd.net was verified as official when first introduced to the cask
+  url "https://prezi-a.akamaihd.net/next-desktop/mac/Prezi_#{version}.dmg"
   name 'Prezi'
   homepage 'https://prezi.com/'
-  license :gratis
 
   app 'Prezi.app'
 end

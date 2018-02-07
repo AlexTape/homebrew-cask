@@ -1,12 +1,12 @@
-cask :v1 => 'cantata' do
-  version '1.5.2'
-  sha256 '564eec8b60d7e46670b8c67686db8a69210f540626bdbaf8c837b48c0bd2ffc8'
+cask 'cantata' do
+  version '2.2.0'
+  sha256 'ae94571146866a8d4d43bfb06870ccc5d31947e1b38616e8fdf1f24444ea441b'
 
-  # google.com is the official download host per the vendor homepage
-  url 'https://drive.google.com/uc?export=download&id=0Bzghs6gQWi60WmNlSDh6dTVzYTg'
-  name 'cantata'
+  url "https://github.com/CDrummond/cantata/releases/download/v#{version}/Cantata-#{version}.dmg"
+  appcast 'https://github.com/CDrummond/cantata/releases.atom',
+          checkpoint: '2ec33166423bf32795c06f1224f21efbf29f0bcce35e6ceb9d6af2277d376106'
+  name 'Cantata'
   homepage 'https://github.com/cdrummond/cantata'
-  license :gpl
 
   app 'Cantata.app'
 end

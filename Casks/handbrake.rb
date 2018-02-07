@@ -1,13 +1,23 @@
-cask :v1 => 'handbrake' do
-  version '0.10.2'
-  sha256 '9591cefbfcbe97ad4e039b456f82ea0e76035b5db9c9aa2ebca044fb171d4dd5'
+cask 'handbrake' do
+  version '1.0.7'
+  sha256 '3cd2e6228da211349574dcd44a0f67a3c76e5bd54ba8ad61070c21b852ef89e2'
 
-  url "http://download.handbrake.fr/releases/#{version}/HandBrake-#{version}-MacOSX.6_GUI_x86_64.dmg"
-  appcast 'https://handbrake.fr/appcast.x86_64.xml',
-          :sha256 => 'f0e700c39b76c16dba12ff8b931ae75ae4d764f1e8d1f5b2deb9231e5a445390'
+  url "https://download.handbrake.fr/handbrake/releases/#{version}/HandBrake-#{version}.dmg"
+  appcast 'https://github.com/HandBrake/HandBrake/releases.atom',
+          checkpoint: 'b1e563b9bd7c2ba000b4d34a5f9046841a2fa65c549977504203da8c3ad2ea59'
   name 'HandBrake'
-  homepage 'https://handbrake.fr'
-  license :oss
+  homepage 'https://handbrake.fr/'
+
+  auto_updates true
+  depends_on macos: '>= :lion'
 
   app 'HandBrake.app'
+
+  zap trash: [
+               '~/Library/Application Support/HandBrake',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/fr.handbrake.handbrake.sfl*',
+               '~/Library/Caches/fr.handbrake.HandBrake',
+               '~/Library/Preferences/fr.handbrake.HandBrake.plist',
+               '~/Library/Saved Application State/fr.handbrake.HandBrake.savedState',
+             ]
 end

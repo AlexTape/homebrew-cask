@@ -1,13 +1,15 @@
-cask :v1 => 'darktable' do
-  version '1.6.9'
-  sha256 'f79b0c4f317f87aab353c25216f2a3628efa2a072b1ce64c21d075a3dda54e9e'
+cask 'darktable' do
+  version '2.4.1'
+  sha256 '75077f17332a6fda144125ab0f1d3dd219c214bf7602b0b252208f1ec665d031'
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/darktable-org/darktable/releases/download/release-#{version}/darktable-#{version}.dmg"
-  appcast 'https://github.com/darktable-org/darktable/releases.atom'
+  # github.com/darktable-org/darktable was verified as official when first introduced to the cask
+  url "https://github.com/darktable-org/darktable/releases/download/release-#{version.before_comma}/darktable-#{version.before_comma}.dmg"
+  appcast 'https://github.com/darktable-org/darktable/releases.atom',
+          checkpoint: '45ecafcfd9d2cacf2515fe69ba28e469085e2c6c9d536add38e45dae9dfeeaf1'
   name 'darktable'
-  homepage 'http://www.darktable.org/'
-  license :gpl
+  homepage 'https://www.darktable.org/'
+
+  depends_on macos: '>= :lion'
 
   app 'darktable.app'
 end

@@ -1,35 +1,19 @@
-cask :v1 => 'clamxav' do
-  if MacOS.release <= :tiger
-    version '2.2.1'
-    sha256 'e075b21fe5154f31dcbde86e492531c87c67ab44ad75294d3063f32ae1e58278'
-  elsif MacOS.release <= :leopard
-    version '2.5.1'
-    sha256 '02a7529c74d11724e2d0e8226ac83a0d3cfb599afb354d02f6609632d69d9eb1'
-  else
-    version '2.8.7'
-    sha256 '4dfa02c2daec5134ab177707ae3f3b110394f72a4b0df602c538bf31b05d082c'
+cask 'clamxav' do
+  version '2.16_3589'
+  sha256 '922da8966da99d5a81103c92d154a9c84d2c8666fa89238bbb3e2ffcddb86ab4'
 
-    appcast 'http://www.clamxav.com/sparkle/profileInfo.php',
-            :sha256 => '85cfc064af4121ebcb753459ba339ef22688c70eb7b908e693914df29496b052'
-  end
-
-  url "https://www.clamxav.com/downloads/ClamXav_#{version}.dmg"
-  name 'ClamXav'
+  url "https://www.clamxav.com/downloads/ClamXAV_#{version}.zip"
+  appcast 'https://www.clamxav.com/sparkle/appcast.xml',
+          checkpoint: '3eb1132b9d0c9fa95b584e62589505b3d4ddd4963c809e7ef142642d9c8ff106'
+  name 'ClamXAV'
   homepage 'https://www.clamxav.com/'
-  license :commercial
 
-  app 'ClamXav.app'
+  app 'ClamXAV.app'
 
-  postflight do
-    suppress_move_to_applications
-  end
-
-  zap :delete => [
-                  '~/Library/Caches/uk.co.markallan.clamxav',
-                  '~/Library/Logs/clamXav-scan.log',
-                  # todo glob/expand needed here
-                  '~/Library/Logs/clamXav-scan.log.0.bz2',
-                 ]
+  zap trash: [
+               '~/Library/Caches/uk.co.markallan.clamxav',
+               '~/Library/Logs/clamXav-scan.*',
+             ]
 
   caveats do
     # this happens sometime after installation, but still worth warning about

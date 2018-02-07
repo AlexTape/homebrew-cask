@@ -1,26 +1,31 @@
-cask :v1 => 'texpad' do
-
-  if MacOS.release >= :mavericks
-    version '1.7.19'
-    sha256 '7caba1e52fda572f32944fc52d37c2b1e2b0fb3b6794c930bc7cf247dd825316'
-    url "https://download.texpadapp.com/apps/osx/updates/Texpad_#{version.gsub('.','_')}.zip"
-  elsif MacOS.release <= :mountain_lion && MacOS.release >= :snow_leopard
+cask 'texpad' do
+  if MacOS.version <= :mountain_lion
     version '1.6.14'
     sha256 '18fcbe93e77e5b5bc848172546962fcde397a26fd543efcc1054004369192f7e'
-    url "https://download.texpadapp.com/apps/osx/updates/Texpad_#{version.gsub('.','_')}.zip"
+
+    url "https://download.texpadapp.com/apps/osx/updates/Texpad_#{version.dots_to_underscores}.zip"
   else
-    # If the app is used on MacOS lower than Snow Leopard,
-    # unexpected behaviour or failures can occur.
+    version '1.7.45,237,1487350'
+    sha256 '5973da0e221a9f9168228d628e25b1f788bcdc9ca8cae86cb02089804f3240f5'
+
+    url "https://download.texpadapp.com/apps/osx/updates/Texpad_#{version.before_comma.dots_to_underscores}__#{version.after_comma.before_comma}__#{version.after_comma.after_comma}.dmg"
+    appcast 'https://www.texpad.com/static-collected/upgrades/texpadappcast.xml',
+            checkpoint: '3dca6764839ba976aa0504b0ad2c506fb044c16e756d5bbd41b1f5412bde8038'
   end
 
-  depends_on :macos => '>= :snow_leopard'
-
-  appcast 'https://www.texpadapp.com/static-collected/upgrades/texpadappcast.xml',
-          :sha256 => 'e78733fb9529330962a6392283b7fdfc533adcf730cf66fbadb6d0445f2816a4'
-
   name 'Texpad'
-  homepage 'https://www.texpadapp.com/osx'
-  license :commercial
+  homepage 'https://www.texpad.com/osx'
+
+  auto_updates true
+  depends_on macos: '>= :lion'
 
   app 'Texpad.app'
+
+  zap trash: [
+               '~/Library/Application Support/Texpad',
+               '~/Library/Caches/com.vallettaventures.Texpad',
+               '~/Library/Cookies/com.vallettaventures.Texpad.binarycookies',
+               '~/Library/Preferences/com.vallettaventures.Texpad.plist',
+               '~/Library/Saved Application State/com.vallettaventures.Texpad.savedState',
+             ]
 end

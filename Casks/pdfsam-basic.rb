@@ -1,13 +1,13 @@
-cask :v1 => 'pdfsam-basic' do
-  version '2.2.4'
-  sha256 'fa8686d2be68ee67be40324723f316e8d5b708924e25b58af5296f7f302ede46'
+cask 'pdfsam-basic' do
+  version '3.3.5'
+  sha256 'a053c1c1815d66110b7da8e598099896841dd36cb3672a5e79f3843fdc872688'
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/torakiki/pdfsam-v2/releases/download/v#{version}/pdfsam-#{version}.dmg"
-  appcast 'https://github.com/torakiki/pdfsam-v2/releases.atom'
+  # github.com/torakiki/pdfsam was verified as official when first introduced to the cask
+  url "https://github.com/torakiki/pdfsam/releases/download/v#{version}/PDFsam-#{version}.dmg"
+  appcast 'https://github.com/torakiki/pdfsam/releases.atom',
+          checkpoint: 'd3f42385f6d99a2c1458ac801f3d7fae143338a6cc27844e3e9fc75c8f1aa508'
   name 'PDFsam Basic'
   homepage 'http://www.pdfsam.org/'
-  license :gpl
 
-  app "PDFsam Basic #{version}.app"
+  app 'PDFsam.app'
 end

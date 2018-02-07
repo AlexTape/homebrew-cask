@@ -1,14 +1,12 @@
-cask :v1 => 'eclipse-ide' do
-  version '4.5.1'
-  sha256 'ec2a963367f3ee99429f151d0af3bb6d70d0550f27e2d7ab65730b429b54c9a9'
+cask 'eclipse-ide' do
+  version '4.7.2,oxygen:2'
+  sha256 '8657a0a8bda888bd9287e92d26f3744bf2f9a2d0a95265a260d92f09372d3f6c'
 
-  url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-committers-mars-1-macosx-cocoa-x86_64.tar.gz&r=1'
-  name 'Eclipse'
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-committers-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
   name 'Eclipse IDE for Eclipse Committers'
   homepage 'https://eclipse.org/'
-  license :eclipse
-  depends_on :macos => '>= :leopard'
-  depends_on :arch => :x86_64
+
+  depends_on macos: '>= :leopard'
 
   app 'Eclipse.app'
 end

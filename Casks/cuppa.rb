@@ -1,12 +1,12 @@
-cask :v1 => 'cuppa' do
-  version '1.7.8'
-  sha256 'd8be48b618b8d6bb1e435de379d88fe5697041e2a2ec52bf68218c76b9d21fe2'
+cask 'cuppa' do
+  version '1.8'
+  sha256 '53b5441b277073c78a3f885e08009ef55f288b1577a035b0f2a038d8504ab7a9'
 
-  url "http://www.nathanatos.com/software/downloads/Cuppa-#{version}.zip"
-  appcast 'http://www.nathanatos.com/software/cuppa.xml'
+  url "https://www.nathanatos.com/software/downloads/Cuppa-#{version}.zip"
+  appcast 'https://www.nathanatos.com/software/cuppa.xml',
+          checkpoint: '3d52ac23d6d41e07cb6f394e4dc510d4ee60be80e3b8426277069eda4e4bd804'
   name 'Cuppa'
-  homepage 'http://www.nathanatos.com/software'
-  license :bsd
+  homepage 'https://www.nathanatos.com/software/'
 
   app 'Cuppa.app'
 end

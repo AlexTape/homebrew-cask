@@ -1,16 +1,16 @@
-cask :v1 => 'bearychat' do
+cask 'bearychat' do
   version :latest
   sha256 :no_check
 
-  url 'https://bearychat.com/apps/mac'
+  url 'https://static.bearychat.com/v2/BearyChat.dmg'
   name 'BearyChat'
-  homepage 'https://bearychat.com'
-  license :gratis
+  homepage 'https://bearychat.com/'
 
   app 'BearyChat.app'
 
-  zap :delete => [
-    '~/Preferences/com.node-webkit-builder.bearychat.plist',
-    '~/Library/Application Support/BearyChat',
-  ]
+  zap trash: [
+               '~/Preferences/com.node-webkit-builder.bearychat.plist',
+               '~/Library/Application Support/BearyChat',
+               '~/Library/Application Support/BearyChat_V2',
+             ]
 end

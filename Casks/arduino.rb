@@ -1,11 +1,17 @@
-cask :v1 => 'arduino' do
-  version '1.6.6'
-  sha256 'c1b42311e654d83ebd2b7693beaab6d2cf24dfc3ad78db1a58c3713e6b49e210'
+cask 'arduino' do
+  version '1.8.5'
+  sha256 '49d0a255802167fc7644f4cc5b3d8b41c94859343c0c4d1f90816f18b11f3fd9'
 
-  url "http://downloads.arduino.cc/arduino-#{version}-macosx.zip"
+  url "https://downloads.arduino.cc/arduino-#{version}-macosx.zip"
+  appcast 'https://www.arduino.cc/en/Main/ReleaseNotes',
+          checkpoint: '8d819ee505a981d873ea7e2858007cf6941bdec4b76e63eacbfae9dd16372da4'
   name 'Arduino'
   homepage 'https://www.arduino.cc/'
-  license :gpl
 
   app 'Arduino.app'
+  binary "#{appdir}/Arduino.app/Contents/Java/arduino-builder"
+
+  caveats do
+    depends_on_java
+  end
 end

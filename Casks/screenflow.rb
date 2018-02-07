@@ -1,14 +1,15 @@
-cask :v1 => 'screenflow' do
-  version '5.0.3'
-  sha256 '5f729b09b04c29e20af3048aaccd8e60ad0527c4e6e5f0cdb07e82d73da3af88'
+cask 'screenflow' do
+  version '7.2'
+  sha256 'c0853d43083550deb1f2fc243f962d266d8eb008edc79c46ae25112bce6465fe'
 
-  url "http://www.telestream.net/download-files/screenflow/5-0/ScreenFlow-#{version}.dmg"
-  appcast 'http://www.telestream.net/updater/screenflow/appcast.xml'
+  url "https://www.telestream.net/download-files/screenflow/#{version.major_minor.dots_to_hyphens}/ScreenFlow-#{version}.dmg"
+  appcast 'https://www.telestream.net/updater/screenflow/appcast.xml',
+          checkpoint: 'de6bd51ea9ae567b4560e8f23c9190733d64196d20566fca64abe83ac5ba46ec'
   name 'ScreenFlow'
-  homepage 'http://www.telestream.net/screenflow/'
-  license :commercial
+  homepage 'https://www.telestream.net/screenflow/'
+
+  auto_updates true
+  depends_on macos: '>= :yosemite'
 
   app 'ScreenFlow.app'
-
-  depends_on :macos => '>= :mavericks'
 end

@@ -1,14 +1,13 @@
-cask :v1 => 'icons8' do
+cask 'icons8' do
   # note: "8" is not a version number, but an intrinsic part of the product name
-  version :latest
-  sha256 :no_check
+  version '5.6.4'
+  sha256 '01dd5ca5fbc412ba8a515200d6f50e7b27a1e696257af0ac87e293758e8e55bd'
 
-  url 'https://s.icons8.com/download/Icons8App_for_Mac_OS.dmg'
-  appcast 'https://icons8.com/icons8_cast',
-          :sha256 => 'd12d6eaeef140a4ad9e0801fb4ffba7765f2b40de786115d40526a9523809d2e'
+  url 'https://desktop.icons8.com/updates/mac/Icons8App_for_Mac_OS.dmg'
+  appcast 'https://desktop.icons8.com/updates/mac/icons8_cast.xml',
+          checkpoint: '9b997f3161fb2a6b83d4cd3098c0798587971e358161d3b8b87543a36d78a48f'
   name 'Icons8 App'
   homepage 'https://icons8.com/'
-  license :freemium
 
-  app 'Icons8 App.app'
+  app 'Icons8.app'
 end

@@ -1,28 +1,33 @@
-cask :v1_1 => 'screens-connect' do
-  version '3.6_b930'
-  sha256 '23570864f111c8eb610f61ad6cb35ed4a9f11cd9836a7c606d89ba87daf2f01b'
+cask 'screens-connect' do
+  version '4.4.5450,1509106836'
+  sha256 'a4c530e8af65dd6b29ca96894356f9b815d86f8cdbe0ffe91c84446cd4907960'
 
-  # edovia.com is the official download host per the appcast feed
-  # Original discussion: https://github.com/caskroom/homebrew-cask/pull/8816
-  url "http://download.edovia.com/screensconnect/screensconnect_#{version}.dmg"
-  appcast 'https://screensconnect.com/sparkle/appcast.xml'
+  # dl.devmate.com/com.edovia.Screens-Connect was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/com.edovia.Screens-Connect/#{version.patch}/#{version.after_comma}/ScreensConnect-#{version.patch}.zip"
+  appcast 'https://updates.devmate.com/com.edovia.Screens-Connect.xml',
+          checkpoint: '746a8d75118580c1519f4d8bfabeef8b09f9e4fac7d7e7c0ba1cd0288dd8261c'
   name 'Screens Connect'
-  homepage 'https://screensconnect.com'
-  license :gratis
+  homepage 'https://screensconnect.com/'
 
-  pkg 'Screens Connect.pkg'
+  depends_on macos: '>= :el_capitan'
 
-  depends_on :macos => '>= :mountain_lion'
+  app 'Screens Connect.app'
 
   # Uninstall script can fail when trying to remove legacy PKGIDS
   # Original discussion: https://github.com/caskroom/homebrew-cask/pull/8833
-  uninstall :script => {
-              :executable => 'Uninstall Screens Connect.app/Contents/Resources/sc-uninstaller.tool',
-              :must_succeed => false
-              },
-            :pkgutil => 'com.edovia.pkg.screens.connect.*'
+  uninstall quit:      'com.edovia.Screens-Connect',
+            launchctl: [
+                         'com.edovia.Screens-Connect.launcher',
+                         'com.edovia.screens.connect',
+                       ],
+            script:    {
+                         executable:   "#{appdir}/Screens Connect.app/Contents/Resources/sc-uninstaller.tool",
+                         must_succeed: false,
+                         sudo:         true,
+                       }
 
-  uninstall_preflight do
-    set_permissions "#{staged_path}/Uninstall Screens Connect.app/Contents/Resources/sc-uninstaller.tool", '+x'
-  end
+  zap trash: [
+               '~/Library/Preferences/com.edovia.Screens-Connect.plist',
+               '~/Library/Preferences/com.edovia.ScreensConnect.Shared.plist',
+             ]
 end

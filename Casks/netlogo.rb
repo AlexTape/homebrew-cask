@@ -1,16 +1,17 @@
-cask :v1 => 'netlogo' do
-  version '5.2.1'
-  sha256 '0c5d57f9109ce1a0b9bc0cc2a7e8177d7e6b34699baf8ebfc7d0d0331e692f22'
+cask 'netlogo' do
+  version '6.0.2'
+  sha256 '952954567aeed7da12340e024718e4ff62e2ee3cfcb7d8270845e07de0f26e80'
 
-  url "https://ccl.northwestern.edu/netlogo/#{version}/NetLogo%20#{version}.dmg"
+  url "https://ccl.northwestern.edu/netlogo/#{version}/NetLogo-#{version}.dmg"
+  appcast 'https://ccl.northwestern.edu/netlogo/oldversions.shtml',
+          checkpoint: '3dee474eb1e89e0db506c115172b236f2c2b41b5d4d9c58238f6dd8cd5c1a3b8'
   name 'NetLogo'
-  homepage 'http://ccl.northwestern.edu/netlogo/'
-  license :gpl
+  homepage 'https://ccl.northwestern.edu/netlogo/'
 
-  zap :delete => [
-    '~/Library/Preferences/org.nlogo.netlogo.plist',
-    '~/Library/Saved Application State/org.nlogo.NetLogo.savedState'
-  ]
+  suite "NetLogo #{version}"
 
-  app "NetLogo #{version.sub(%r{\.\d+$},'')}/NetLogo #{version.sub(%r{\.\d+$},'')}.app"
+  zap trash: [
+               '~/Library/Preferences/org.nlogo.netlogo.plist',
+               '~/Library/Saved Application State/org.nlogo.NetLogo.savedState',
+             ]
 end

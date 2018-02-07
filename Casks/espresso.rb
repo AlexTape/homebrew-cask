@@ -1,14 +1,14 @@
-cask :v1 => 'espresso' do
-  version '2.2.3'
-  sha256 '5d6be08f97fb87cf4a1ba713c4ea7f9f09c7eb11658891725df171fe1cf73442'
+cask 'espresso' do
+  version '5.1.1'
+  sha256 '728b5cb018479463bfb919533bfdcbd1788d1ec5b00ee312d3dc316d2e50527d'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/macrabbit/downloads/Espresso%20#{version}.zip"
+  url "https://presto.espressoapp.com/downloads/Espresso%20v#{version}.zip"
   appcast "https://update.macrabbit.com/espresso/#{version}.xml",
-          :sha256 => '19e9805da329eab855c64bf36a2175a24e19cb2c32c98e14fdfa0828fe64e255'
+          checkpoint: 'c6be149ba0581d51a48418850d3378aa1523814e12f0eb066c552b0b0a6ec4bb'
   name 'Espresso'
-  homepage 'http://macrabbit.com/espresso/'
-  license :freemium
+  homepage 'https://espressoapp.com/'
+
+  depends_on macos: '>= :sierra'
 
   app 'Espresso.app'
 end

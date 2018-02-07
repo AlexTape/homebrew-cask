@@ -1,16 +1,19 @@
-cask :v1 => 'cheatsheet' do
-  version '1.2.2'
-  sha256 '41cfec767f761e2400d5ad700c936339c8c2e80a9dfbaf44b66375e63192763c'
+cask 'cheatsheet' do
+  version '1.2.9'
+  sha256 '0d3bb2a72a9f108ac37ad62b3ed278b1344f92835b7d47548bfa2d49777aefec'
 
-  url "http://mediaatelier.com/CheatSheet/CheatSheet_#{version}.zip"
-  appcast 'http://mediaatelier.com/CheatSheet/feed.php'
+  # mediaatelier.com/CheatSheet was verified as official when first introduced to the cask
+  url "https://mediaatelier.com/CheatSheet/CheatSheet_#{version}.zip"
+  appcast 'https://mediaatelier.com/CheatSheet/feed.php',
+          checkpoint: '92a7ca5741dbdb00c809ffc7a7b36652ce30ad1b4c37bee5509e8c946d167b8f'
   name 'CheatSheet'
-  homepage 'http://www.cheatsheetapp.com/CheatSheet/'
-  license :gratis
+  homepage 'https://www.cheatsheetapp.com/CheatSheet/'
 
   app 'CheatSheet.app'
 
-  postflight do
-    suppress_move_to_applications
-  end
+  zap trash: [
+               '~/Library/Application Support/com.mediaatelier.CheatSheet',
+               '~/Library/Caches/com.mediaatelier.CheatSheet',
+               '~/Library/Preferences/com.mediaatelier.CheatSheet.plist',
+             ]
 end

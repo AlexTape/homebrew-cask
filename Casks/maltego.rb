@@ -1,12 +1,16 @@
-cask :v1 => 'maltego' do
-  version '3.6.0.6526'
-  sha256 'cda838e27afd3c73dd33705f0448f7e63918a3e65df0274928a9c87fe3340d00'
+cask 'maltego' do
+  version '4.1.0.10552'
+  sha256 'f7e869141ea4ccabd339e48a14fe74a6d34f5e8d408a93e891aba3affa30cb49'
 
-  url "https://www.paterva.com/malv#{version.sub(%r{^(\d+)\.(\d+)\..*},'\1\2')}/commercial/Maltego.v#{version}.dmg"
+  url "https://www.paterva.com/malv#{version.major_minor.no_dots}/maltego_v#{version}.dmg"
   name 'Maltego'
-  homepage 'https://www.paterva.com/web6/products/maltego.php'
-  license :closed
-  tags :vendor => 'Paterva'
+  homepage 'https://www.paterva.com/web7/buy/maltego-clients.php'
 
-  app "Maltego Chlorine v#{version.sub(%r{\.\d+$},'')}.app"
+  app 'Maltego.app'
+
+  zap trash: '~/Library/Application Support/maltego'
+
+  caveats do
+    depends_on_java('8')
+  end
 end

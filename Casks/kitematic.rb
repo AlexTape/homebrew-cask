@@ -1,18 +1,21 @@
-cask :v1 => 'kitematic' do
-  version '0.9.3'
-  sha256 '839a091e0ccb30926aa76b6d8c01f05ff9815f3846aa5c136826f25235fab175'
+cask 'kitematic' do
+  version '0.17.3'
+  sha256 'f7822079a1c1747dabeebd95a57f46d50847f77d3f567862e7b624bff309bd2c'
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/kitematic/kitematic/releases/download/v#{version}/Kitematic-#{version}-Mac.zip"
-  appcast 'https://github.com/kitematic/kitematic/releases.atom'
+  # github.com/docker/kitematic was verified as official when first introduced to the cask
+  url "https://github.com/docker/kitematic/releases/download/v#{version}/Kitematic-#{version}-Mac.zip"
+  appcast 'https://github.com/docker/kitematic/releases.atom',
+          checkpoint: 'ada402986944f964fcd4731bb2644bef40c5b2ebd4e58c8e797b042f6a4ed489'
   name 'Kitematic'
   homepage 'https://kitematic.com/'
-  license :apache
 
   app 'Kitematic (Beta).app'
 
-  zap :delete => [
-    '~/Library/Application Support/Kitematic',
-    '~/Kitematic'
-  ]
+  zap trash: [
+               '~/Kitematic',
+               '~/Library/Application Support/Kitematic',
+               '~/Library/Caches/Kitematic',
+               '~/Library/Preferences/com.electron.kitematic_(beta).plist',
+               '~/Library/Saved Application State/com.electron.kitematic_(beta).savedState',
+             ]
 end

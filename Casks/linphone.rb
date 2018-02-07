@@ -1,25 +1,12 @@
-cask :v1 => 'linphone' do
-  version '3.8.5'
-  sha256 '250d6b0b8ca3fd5029185b479199ae47b5d8c57062007a2bbb864ca63034a5de'
+cask 'linphone' do
+  version '4.1.1'
+  sha256 'b1a5e518c1c564d47f992adadb09ea8cdb51f35e1a0935d4e2060468f893328e'
 
-  # gnu.org is the official download host per the vendor homepage
-  url "http://download-mirror.savannah.gnu.org/releases/linphone/#{version.sub(%r{\d+$},'')}x/macos/linphone-#{version}.pkg"
-  gpg "#{url}.sig",
-      :key_id => '3ecd52dee2f56985'
+  url "https://www.linphone.org/releases/macosx/Linphone-#{version}-mac.dmg"
+  appcast 'https://www.linphone.org/releases/macosx/RELEASE',
+          checkpoint: '1c2e9c6b3dcf0ca0dad9a60ad32ee0de93f85c5239a0d56cd8119ca9af20d604'
   name 'Linphone'
   homepage 'https://www.linphone.org/'
-  license :gpl
-
-  container :type => :xar
-
-  preflight do
-    system '/usr/bin/tar', '-xf', "#{staged_path}/linphone.pkg/Payload", '-C', staged_path
-  end
-
-  postflight do
-    system 'rm', '-rf', "#{staged_path}/linphone.pkg"
-    system 'rm', '-f', "#{staged_path}/Distribution"
-  end
 
   app 'Linphone.app'
 end

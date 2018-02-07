@@ -1,14 +1,22 @@
-cask :v1 => 'goofy' do
-  version '2.2.3'
-  sha256 '6d57b7c6067c63e3096eb49120138642488a4ff33a902fd9adac44fcfe415700'
+cask 'goofy' do
+  version '3.2.2'
+  sha256 '6c85abf245abf5acbd0d76d9ca5af895756f3362c52dd0e460ada3b8c1652db6'
 
-  # github.com is the official download host per the appcast feed
-  url "https://github.com/danielbuechele/goofy/releases/download/v#{version}/Goofy.app.zip"
-  name 'Goofy'
+  # github.com/danielbuechele/goofy was verified as official when first introduced to the cask
+  url "https://github.com/danielbuechele/goofy/releases/download/v#{version}/goofy-core-#{version}-mac.zip"
   appcast 'https://github.com/danielbuechele/goofy/releases.atom',
-          :sha256 => 'fb33fcb13e310a06a718c63cffc9ef70f18859d4c058d3714dd5a50c56080e91'
+          checkpoint: '327de9ef1549aaa5db1b5ee5f93dc714bc3786b949a05c1fda4287720c8f540f'
+  name 'Goofy'
   homepage 'http://www.goofyapp.com/'
-  license :mit
 
   app 'Goofy.app'
+
+  zap trash: [
+               '~/Library/Application Support/goofy-core',
+               '~/Library/Caches/cc.buechele.Goofy',
+               '~/Library/Caches/cc.buechele.Goofy.ShipIt',
+               '~/Library/Preferences/cc.buechele.Goofy.helper.plist',
+               '~/Library/Preferences/cc.buechele.Goofy.plist',
+               '~/Library/Saved Application State/cc.buechele.Goofy.savedState',
+             ]
 end

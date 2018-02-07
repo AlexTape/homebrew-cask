@@ -1,12 +1,15 @@
-cask :v1 => 'stellarium' do
-  version '0.14.0'
-  sha256 '1b7350a0a84f6c0056c53bc432c384f1501e3935c6118b64d87a365eb035982b'
+cask 'stellarium' do
+  version '0.17.0.1'
+  sha256 '729efdfcaa769cd168345957b5d0649208f6520fc9dc9ed1ecb26c2713b67e51'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/stellarium/Stellarium-#{version}.dmg"
+  # github.com/Stellarium/stellarium was verified as official when first introduced to the cask
+  url "https://github.com/Stellarium/stellarium/releases/download/v#{version.major_minor_patch}/Stellarium-#{version}.dmg"
+  appcast 'https://github.com/Stellarium/stellarium/releases.atom',
+          checkpoint: '7951762cbf5665d6780e3315b9d9688a847b72650581e6768f69e7967aec487e'
   name 'Stellarium'
-  homepage 'http://stellarium.org'
-  license :gpl
+  homepage 'http://stellarium.org/'
 
   app 'Stellarium.app'
+
+  zap trash: '~/Library/Preferences/Stellarium'
 end

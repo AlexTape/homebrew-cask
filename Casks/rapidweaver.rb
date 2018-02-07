@@ -1,17 +1,15 @@
-cask :v1 => 'rapidweaver' do
-  version '6.3.5'
-  sha256 :no_check # required as upstream package is updated in-place
+cask 'rapidweaver' do
+  version '7.5.4,18811.1511975403'
+  sha256 'b25ae4b3fd9e51270c1c9f1a348174ba53c447903975f96a96c0c82711dce6a1'
 
-  # devmate.com is the official download host per the appcast feed
-  url "http://dl.devmate.com/com.realmacsoftware.rapidweaver#{version.to_i}/RapidWeaver#{version.to_i}.zip"
-  appcast "http://updates.devmate.com/com.realmacsoftware.rapidweaver#{version.to_i}.xml",
-            :sha256 => '4dfae736ef9b65d391e69bb5db65ec275968f9a7d6c2cda6d57be2e6abc9fe5b',
-            :format => :sparkle
+  # devmate.com/com.realmacsoftware.rapidweaver was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/com.realmacsoftware.rapidweaver/#{version.after_comma.major}/#{version.after_comma.minor}/RapidWeaver-#{version.after_comma.major}.zip"
+  appcast 'https://updates.devmate.com/com.realmacsoftware.rapidweaver.xml',
+          checkpoint: '83fc8fff13ae051c2ce7c6b78fc2792c085602c1c695e95da88dd356464a4385'
   name 'RapidWeaver'
-  homepage 'http://realmacsoftware.com/rapidweaver'
-  license :commercial
+  homepage 'https://www.realmacsoftware.com/rapidweaver/'
 
-  depends_on :macos => '>= :leopard'
+  depends_on macos: '>= :el_capitan'
 
-  app 'RapidWeaver 6.app'
+  app "RapidWeaver #{version.major}.app"
 end

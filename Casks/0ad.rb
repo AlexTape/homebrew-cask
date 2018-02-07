@@ -1,12 +1,13 @@
-cask :v1 => '0ad' do
-  version '0.0.18-alpha'
-  sha256 '0b1138032c38a14e67ba78301ac113247523c2128cbc4c673fb847a4b3a48f91'
+cask '0ad' do
+  version '0.0.22-alpha'
+  sha256 '5876856a8641ffe736fc39f9f6472d7e1699c49a3154e35e713a382abc840caa'
 
-  # wildfiregames.com is the official download host per the vendor homepage
+  # wildfiregames.com was verified as official when first introduced to the cask
   url "http://releases.wildfiregames.com/0ad-#{version}-osx64.dmg"
+  appcast 'https://play0ad.com/download/mac/',
+          checkpoint: 'd0522e342051ad0fe14820172702c1db0c24cd8aa43e848458ad453274f7374e'
   name '0 A.D.'
-  homepage 'http://www.play0ad.com/'
-  license :oss
+  homepage 'https://play0ad.com/'
 
   app '0ad.app'
 end

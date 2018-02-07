@@ -1,14 +1,14 @@
-cask :v1 => 'doomsday-engine' do
-  version '1.14.5'
-  sha256 '8a45d3c05fbaf69f8b3cd1a6d8a6bbf1ba67d9a6c7c97551f2356a248cf86e1f'
+cask 'doomsday-engine' do
+  version '2.0.3'
+  sha256 '0a6258ed1c061b3a80f1573c7845bce39cd8c8d66ade8d3f29531b7cc658e9d5'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/deng/doomsday_#{version}.dmg"
+  # sourceforge.net/deng was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/deng/doomsday_#{version}_x86_64.dmg"
+  appcast 'https://sourceforge.net/projects/deng/rss',
+          checkpoint: '8628643798d476dbf82420b8bb6fafaa3445a95b774b83454d24fc2103a9b473'
   name 'Doomsday Engine'
-  homepage 'http://dengine.net'
-  license :gpl
+  homepage 'https://dengine.net/'
 
-  pkg 'Doomsday.pkg'
-
-  uninstall :pkgutil => 'net.dengine.doomsday.*'
+  app 'Doomsday.app'
+  app 'Doomsday Shell.app'
 end

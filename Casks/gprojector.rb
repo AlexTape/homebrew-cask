@@ -1,17 +1,14 @@
-cask :v1 => 'gprojector' do
-  version '1.7.4'
-  sha256 '6e8d8c5659b8d9719cbf1ac95a1fee814a8411362639493ecfa383a6b929fb71'
+cask 'gprojector' do
+  version '2.1.3'
+  sha256 '7ca67ed3c75b1f05ef2fc4857da7f475c0d383666daf3445423676b5e070a243'
 
-  url "http://www.giss.nasa.gov/tools/gprojector/G.ProjectorOSX-#{version}.dmg"
+  url "https://www.giss.nasa.gov/tools/gprojector/download/G.ProjectorMacOS-#{version}.dmg"
   name 'G.Projector'
-  homepage 'http://www.giss.nasa.gov/tools/gprojector/'
-  license :gratis
+  homepage 'https://www.giss.nasa.gov/tools/gprojector/'
 
   app 'G.Projector.app'
 
-  caveats <<-EOS.undent
-    #{token} requires Java 7+, you can install the latest Java using
-
-      brew cask install java
-  EOS
+  caveats do
+    depends_on_java('8+')
+  end
 end

@@ -1,16 +1,20 @@
-cask :v1 => 'geotag' do
-  if MacOS.release <= :mountain_lion
-    version '2.2'
-    sha256 'c5553af3b37903b7e4f402d8c9fbeced63492295c6bdd25987dd70ab367c32e9'
-  else
-    version '3.4.4'
-    sha256 '987380bf59e4465bf2ab65b04711114abda493e9b78cb26d25e4e4c903004225'
-  end
+cask 'geotag' do
+  version '4.2'
+  sha256 'fe98f72a40138d87a103a88427cbff635cd02ca3a3ff9d6a1d9bb8305ef87cbe'
 
-  url "http://www.snafu.org/GeoTag/GeoTag-#{version}.dmg"
+  url "https://www.snafu.org/GeoTag/GeoTag-#{version}.dmg"
+  appcast 'https://www.snafu.org/GeoTag/',
+          checkpoint: '8a0dd8267f56b2dd19db3d2fc4e6d9ed953b7e9848523b900e4ed8951db255da'
   name 'GeoTag'
-  homepage 'http://www.snafu.org/GeoTag/'
-  license :cc
+  homepage 'https://www.snafu.org/GeoTag/'
+
+  depends_on formula: 'exiftool'
 
   app 'GeoTag.app'
+
+  zap trash: [
+               '~/Library/Caches/org.snafu.GeoTag',
+               '~/Library/Preferences/org.snafu.GeoTag.plist',
+               '~/Library/Saved Application State/org.snafu.GeoTag.savedState',
+             ]
 end

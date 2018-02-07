@@ -1,36 +1,36 @@
-cask :v1_1 => 'sencha' do
-  version '5.1.3.61'
-  sha256 '6083490b578191d2b8307b375e115c93c2223683e49636893edadfa1d76a412c'
+cask 'sencha' do
+  version '6.5.2.15'
+  sha256 '8095e5ea0e7b5dffb7fb38ce9d68fb8a40e50df885eea42709d62d900ea747af'
 
-  url "https://cdn.sencha.com/cmd/#{version}/SenchaCmd-#{version}-osx.app.zip"
+  url "https://cdn.sencha.com/cmd/#{version}/jre/SenchaCmd-#{version}-osx.app.zip"
   name 'Sencha Cmd'
-  homepage 'http://www.sencha.com/products/sencha-cmd/'
-  license :freemium
+  homepage 'https://www.sencha.com/products/sencha-cmd/'
 
-  installer :script => "SenchaCmd-#{version}-osx.app/Contents/MacOS/installbuilder.sh",
-            :args   => ['--mode', 'unattended', '--prefix', '/opt']
-
-  uninstall :script => {
-                         :executable => "/opt/Sencha/Cmd/#{version}/uninstall.app/Contents/MacOS/installbuilder.sh",
-                         :args => ['--mode', 'unattended']
-                       }
+  installer script: {
+                      executable: "SenchaCmd-#{version}-osx.app/Contents/MacOS/JavaApplicationStub",
+                      args:       ['-Djava.awt.headless=true', '-q', '-dir', "/opt/Sencha/Cmd/#{version}"],
+                      sudo:       true,
+                    }
 
   postflight do
     set_ownership '/opt/Sencha'
   end
 
-  caveats do
-    <<-EOS.undent
-      Installing this Cask means you have AGREED to the Sencha Cmd License
+  uninstall script: {
+                      executable: "/opt/Sencha/Cmd/#{version}/Sencha Cmd Uninstaller.app/Contents/MacOS/JavaApplicationStub",
+                      args:       ['-Djava.awt.headless=true', '-q'],
+                      sudo:       true,
+                    }
 
-        http://www.sencha.com/legal/sencha-tools-software-license-agreement/
+  caveats <<~EOS
+    Installing this Cask means you have AGREED to the Sencha Cmd License
 
-      Sencha Cmd appends 2 lines to your ~/.bashrc or ~/.profile file:
+      https://www.sencha.com/legal/sencha-tools-software-license-agreement/
 
-        export PATH=/opt/Sencha/Cmd/#{version}:$PATH
-        export SENCHA_CMD_3_0_0="/opt/Sencha/Cmd/#{version}"
+    Sencha Cmd appends 1 line to your ~/.bash_profile or ~/.profile file:
 
-      If you are a zshell user, append both lines to your .zshrc file.
-    EOS
-  end
+      export PATH="/opt/Sencha/Cmd:$PATH"
+
+    If you are a zshell user, append both lines to your .zshrc file.
+  EOS
 end

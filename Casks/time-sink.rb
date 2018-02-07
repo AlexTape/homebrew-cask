@@ -1,13 +1,14 @@
-cask :v1 => 'time-sink' do
-  version :latest
-  sha256 :no_check
+cask 'time-sink' do
+  version '2.0.0'
+  sha256 '7ba8ad0833dfe5e1b24be7f0b2afb2a443b2d3f25ad285c6a017218575cba103'
 
-  url 'http://manytricks.com/download/timesink'
+  url "https://manytricks.com/download/_do_not_hotlink_/timesink#{version.no_dots}.dmg"
+  appcast 'https://manytricks.com/timesink/appcast',
+          checkpoint: '576a8b4e3947a126c0396a4155ccea19dedf84f7e3725968237529d989ed4910'
   name 'Time Sink'
-  appcast 'http://manytricks.com/timesink/appcast.xml',
-          :sha256 => '9d3f4080a3b044f321311ca0649f5d8a3f409d7232a52d9a85638103808ee67e'
-  homepage 'http://manytricks.com/timesink/'
-  license :commercial
+  homepage 'https://manytricks.com/timesink/'
+
+  auto_updates true
 
   app 'Time Sink.app'
 end

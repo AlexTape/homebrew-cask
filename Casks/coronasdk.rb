@@ -1,11 +1,10 @@
-cask :v1 => 'coronasdk' do
-  version '2014.2511'
-  sha256 '19f2d1a7bd3ffb45f830cebd1d2fcfd292967cb3f5211e29e3c73b66a8f220e6'
+cask 'coronasdk' do
+  version '2017.3184'
+  sha256 '54fe7dfd2e9e67a948e08fc4f50c77136d22b4bdeb23f48b13ecb123da1098ae'
 
-  url "https://developer.coronalabs.com/sites/default/files/CoronaSDK-#{version}.dmg"
+  url "https://developer.coronalabs.com/sites/default/files/Corona-#{version}.dmg"
   name 'Corona SDK'
-  homepage 'https://coronalabs.com/products/corona-sdk/'
-  license :gratis
+  homepage 'https://coronalabs.com/'
 
-  suite 'CoronaSDK'
+  suite 'Corona'
 end

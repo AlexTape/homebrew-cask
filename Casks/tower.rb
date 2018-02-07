@@ -1,25 +1,20 @@
-cask :v1 => 'tower' do
-  version '2.3.2-299-6e9850db'
-  sha256 '2778bb1c98417b694bf0b72908c3d88c3b055ac959b6a1366186c0b789a2f20a'
+cask 'tower' do
+  version '2.6.4-357,a5932bd4'
+  sha256 'c969606ee68e4094785918aeefcd8c1c94b3e23934658675ccb36e5500d6078d'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://fournova-app-updates.s3.amazonaws.com/apps/tower#{version.to_i}-mac/#{version.sub(%r{^.*?-},'')}/Tower-#{version.to_i}-#{version.sub(%r{-[^-]*$},'')}.zip"
-  appcast "https://updates.fournova.com/updates/tower#{version.to_i}-mac/stable",
-          :sha256 => '40c701368d0ceea7fcbdaa0f09a86004869ae823423b2fcc87797590fab06669'
+  # fournova-app-updates.s3.amazonaws.com was verified as official when first introduced to the cask
+  url "https://fournova-app-updates.s3.amazonaws.com/apps/tower#{version.major}-mac/#{version.split('-').last.tr(',', '-')}/Tower-#{version.major}-#{version.before_comma}.zip"
+  appcast "https://updates.fournova.com/updates/tower#{version.major}-mac/stable",
+          checkpoint: '5410b13eb6a6c668df25a46715b22c72c5f7055b822acb57afd57af1b238cde4'
   name 'Tower'
-  homepage 'http://www.git-tower.com/'
-  license :commercial
+  homepage 'https://www.git-tower.com/'
 
   app 'Tower.app'
-  binary 'Tower.app/Contents/MacOS/gittower'
+  binary "#{appdir}/Tower.app/Contents/MacOS/gittower"
 
-  zap :delete => [
-                  "~/Library/Application Support/com.fournova.Tower#{version.to_i}",
-                  "~/Library/Caches/com.fournova.Tower#{version.to_i}",
-                  "~/Library/Preferences/com.fournova.Tower#{version.to_i}.plist",
-                 ]
-
-  caveats do
-    files_in_usr_local
-  end
+  zap trash: [
+               "~/Library/Application Support/com.fournova.Tower#{version.major}",
+               "~/Library/Caches/com.fournova.Tower#{version.major}",
+               "~/Library/Preferences/com.fournova.Tower#{version.major}.plist",
+             ]
 end

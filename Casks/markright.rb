@@ -1,12 +1,12 @@
-cask :v1 => 'markright' do
-  version '0.1.8'
-  sha256 '2a5c875a34bbe43ff1ef7cb47d377009ee5e11ac2d84381d4c5d085b7a99f4dc'
+cask 'markright' do
+  version '0.1.11'
+  sha256 '2d293121534a468e5f166e18eaa28f8db7e39a617b092e06c0d8b339191d9f47'
 
   url "https://github.com/dvcrn/markright/releases/download/#{version}/MarkRight_Mac.dmg"
-  appcast 'https://github.com/dvcrn/markright/releases.atom'
+  appcast 'https://github.com/dvcrn/markright/releases.atom',
+          checkpoint: '390d273e0e50e5560cb447d2a3f6efbd4742fd82a18c6a7ee6345075357b5fc9'
   name 'MarkRight'
   homepage 'https://github.com/dvcrn/markright'
-  license :gpl
 
   app 'MarkRight.app'
 end

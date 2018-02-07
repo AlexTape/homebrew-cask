@@ -1,14 +1,15 @@
-cask :v1 => 'fpcsrc' do
-  version '2.6.4-20140421'
-  sha256 'fa7fdfff220241de9e11222e159bcc1b6f3c82588d437191666b5b0ec5fb51cf'
+cask 'fpcsrc' do
+  version '3.0.2,20170228'
+  sha256 'ca3e47394e65c8a53a6bdb5f4f8551f54a036e8613865bca73b231b059be9bc8'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/lazarus/fpcsrc-#{version}-i386-macosx.dmg"
+  # sourceforge.net/lazarus was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/lazarus/fpc-src-#{version.before_comma}-macosx.dmg"
+  appcast 'https://sourceforge.net/projects/lazarus/rss',
+          checkpoint: '8ab02d40404440038034b43801b98c89c3c3e278a0a2a8bfedb5951223e47ab1'
   name 'Free Pascal Compiler Source'
-  homepage 'http://www.freepascal.org/'
-  license :gpl
+  homepage 'https://www.freepascal.org/'
 
-  pkg "fpcsrc-#{version}.pkg"
+  pkg "fpcsrc-#{version.before_comma}-#{version.after_comma}.pkg"
 
-  uninstall :pkgutil => 'org.freepascal.fpc.source'
+  uninstall pkgutil: 'org.freepascal.fpc.source'
 end

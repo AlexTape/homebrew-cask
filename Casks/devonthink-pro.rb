@@ -1,15 +1,13 @@
-cask :v1 => 'devonthink-pro' do
-  version '2.8.7'
-  sha256 '49f5ebd10dfb79c4610f3042d04ce49801160e69d37c9efd6da651c9e375be35'
+cask 'devonthink-pro' do
+  version '2.9.17'
+  sha256 '3a01a261a8e5d9b452fbae7d2b22a1c1fd7b95fc0b81e28e5b00aeab79d77c14'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/DTWebsiteSupport/download/devonthink/#{version}/DEVONthink_Pro.dmg.zip"
-  appcast 'http://www.devon-technologies.com/Sparkle/DEVONthinkPro2.xml',
-          :sha256 => 'd1c3526d9d9d9f0c81fa3348ef39c26118be13e3b8bad33724897ea49058470f'
+  # amazonaws.com/DTWebsiteSupport was verified as official when first introduced to the cask
+  url "https://s3.amazonaws.com/DTWebsiteSupport/download/devonthink/#{version}/DEVONthink_Pro.app.zip"
+  appcast 'http://www.devon-technologies.com/fileadmin/templates/filemaker/sparkle.php?product=300030707&format=xml',
+          checkpoint: '34e525574a0e9dd88366dd3096ea60e07342a90aa0ba94d510d92536e429ba16'
   name 'DEVONthink Pro'
-  homepage 'http://www.devontechnologies.com/products/devonthink/devonthink-pro.html'
-  license :commercial
+  homepage 'https://www.devontechnologies.com/products/devonthink/devonthink-pro.html'
 
-  container :nested => 'DEVONthink_Pro.dmg'
   app 'DEVONthink Pro.app'
 end

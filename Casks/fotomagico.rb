@@ -1,12 +1,12 @@
-cask :v1 => 'fotomagico' do
-  version '4.6.2-19829'
-  sha256 '7b92c77092a8467b1bcc2584e1d98c8e39819da0c3c37eeba53ad6b3e666d27c'
+cask 'fotomagico' do
+  version '5.5.3-22746'
+  sha256 '328adfcfd6185506568ac80f6e73960c8ca3d7ae881e7069e9dfa83b340ca11c'
 
-  url "https://cdn.boinx.com/software/fotomagico/Boinx_FotoMagico_#{version}.app.zip"
-  appcast 'https://sparkle.boinx.com/appcast.lasso'
+  url "https://cdn.boinx.com/software/fotomagico/Boinx_FotoMagico_#{version.major}_#{version}.app.zip"
+  appcast 'https://boinx.com/d/connect/histories/fotomagico',
+          checkpoint: 'b36423d7aff5d47b941a80738adb504c80a9b3c02f75a6b7daedb3c57e1878c7'
   name 'FotoMagico'
-  homepage 'http://www.boinx.com/fotomagico/'
-  license :commercial
+  homepage 'https://boinx.com/fotomagico/'
 
-  app 'FotoMagico.app'
+  app "FotoMagico #{version.major}.app"
 end

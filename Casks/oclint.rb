@@ -1,18 +1,18 @@
-cask :v1 => 'oclint' do
-  version '0.8.1'
-  sha256 '68499fe4331b3ca2334a2884a8b3e89bba2ffa468a42a780df3dc73849c44939'
+cask 'oclint' do
+  version '0.13,17.0.0'
+  sha256 '03ccf5c21abd705edfb254d037e0452490d8ce3bfb8d638cc2aa8e69e7283658'
 
-  url "http://archives.oclint.org/releases/#{version.sub(%r{\.\d+$},'')}/oclint-#{version}-x86_64-darwin-14.0.0.tar.gz"
+  # github.com/oclint/oclint was verified as official when first introduced to the cask
+  url "https://github.com/oclint/oclint/releases/download/v#{version.before_comma}/oclint-#{version.before_comma}-x86_64-darwin-#{version.after_comma}.tar.gz"
+  appcast 'https://github.com/oclint/oclint/releases.atom',
+          checkpoint: '939775f9b4876d24f3b9b7c897e6680cdc3347fa99ee55b62976d6606cb950d0'
   name 'OCLint'
-  homepage 'http://oclint.org'
-  license :oss
+  homepage 'http://oclint.org/'
 
-  binary "oclint-#{version}/bin/oclint"
-  binary "oclint-#{version}/bin/oclint-json-compilation-database"
-  binary "oclint-#{version}/bin/oclint-xcodebuild"
-  binary "oclint-#{version}/lib/oclint", :target => '/usr/local/lib/oclint'
-
-  caveats do
-    files_in_usr_local
-  end
+  binary "oclint-#{version.before_comma}/bin/oclint"
+  binary "oclint-#{version.before_comma}/bin/oclint-json-compilation-database"
+  binary "oclint-#{version.before_comma}/bin/oclint-xcodebuild"
+  binary "oclint-#{version.before_comma}/lib/oclint", target: "#{HOMEBREW_PREFIX}/lib/oclint"
+  binary "oclint-#{version.before_comma}/lib/clang", target: "#{HOMEBREW_PREFIX}/lib/clang"
+  binary "oclint-#{version.before_comma}/include/c++", target: "#{HOMEBREW_PREFIX}/include/c++"
 end

@@ -1,33 +1,34 @@
-cask :v1 => 'racket' do
-  version '6.2.1'
-  sha256 '7a8f61e2ecb17cc4ce05a45f7bbd02bddabda1213ca0dd25391f536387055eb5'
+cask 'racket' do
+  version '6.12'
+  sha256 '54fbee6a967209c62c814f60ba00ca105f01c69a8f1a9f4bfa21525698398a31'
 
-  url "http://mirror.racket-lang.org/installers/#{version}/racket-#{version}-x86_64-macosx.dmg"
+  url "https://mirror.racket-lang.org/installers/#{version}/racket-#{version}-x86_64-macosx.dmg"
+  appcast 'https://download.racket-lang.org/all-versions.html',
+          checkpoint: '087ee282ac3b03af2070a6812e52188d578f4f1cbd7fb0d5e1e29d8aed5871c9'
   name 'Racket'
-  homepage 'http://racket-lang.org/'
-  license :oss
+  homepage 'https://racket-lang.org/'
 
   suite "Racket v#{version}"
-  binary "Racket v#{version}/bin/drracket"
-  binary "Racket v#{version}/bin/gracket"
-  binary "Racket v#{version}/bin/gracket-text"
-  binary "Racket v#{version}/bin/mred"
-  binary "Racket v#{version}/bin/mred-text"
-  binary "Racket v#{version}/bin/mzc"
-  binary "Racket v#{version}/bin/mzpp"
-  binary "Racket v#{version}/bin/mzscheme"
-  binary "Racket v#{version}/bin/mztext"
-  binary "Racket v#{version}/bin/pdf-slatex"
-  binary "Racket v#{version}/bin/plt-games"
-  binary "Racket v#{version}/bin/plt-help"
-  binary "Racket v#{version}/bin/plt-r5rs"
-  binary "Racket v#{version}/bin/plt-r6rs"
-  binary "Racket v#{version}/bin/plt-web-server"
-  binary "Racket v#{version}/bin/racket"
-  binary "Racket v#{version}/bin/raco"
-  binary "Racket v#{version}/bin/scribble"
-  binary "Racket v#{version}/bin/setup-plt"
-  binary "Racket v#{version}/bin/slatex"
-  binary "Racket v#{version}/bin/slideshow"
-  binary "Racket v#{version}/bin/swindle"
+  binary "#{appdir}/Racket v#{version}/bin/drracket"
+  binary "#{appdir}/Racket v#{version}/bin/gracket"
+  binary "#{appdir}/Racket v#{version}/bin/gracket-text"
+  binary "#{appdir}/Racket v#{version}/bin/mred"
+  binary "#{appdir}/Racket v#{version}/bin/mred-text"
+  binary "#{appdir}/Racket v#{version}/bin/mzc"
+  binary "#{appdir}/Racket v#{version}/bin/mzpp"
+  binary "#{appdir}/Racket v#{version}/bin/mzscheme"
+  binary "#{appdir}/Racket v#{version}/bin/mztext"
+  binary "#{appdir}/Racket v#{version}/bin/pdf-slatex"
+  binary "#{appdir}/Racket v#{version}/bin/plt-games"
+  binary "#{appdir}/Racket v#{version}/bin/plt-help"
+  binary "#{appdir}/Racket v#{version}/bin/plt-r5rs"
+  binary "#{appdir}/Racket v#{version}/bin/plt-r6rs"
+  binary "#{appdir}/Racket v#{version}/bin/plt-web-server"
+  binary "#{appdir}/Racket v#{version}/bin/racket"
+  binary "#{appdir}/Racket v#{version}/bin/raco"
+  binary "#{appdir}/Racket v#{version}/bin/scribble"
+  binary "#{appdir}/Racket v#{version}/bin/setup-plt"
+  binary "#{appdir}/Racket v#{version}/bin/slatex"
+  binary "#{appdir}/Racket v#{version}/bin/slideshow"
+  binary "#{appdir}/Racket v#{version}/bin/swindle"
 end

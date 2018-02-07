@@ -1,15 +1,14 @@
-cask :v1 => 'robofont' do
-  version '1.6'
-  sha256 'fb2fd390868a32fb9e89490081f3f052e65c1156ee32b39cac1c799b87abc4c7'
+cask 'robofont' do
+  version '1.8.4,1706131209'
+  sha256 '2a594edfe6fd376a84b7aabc1734e75afb4e9f0a1df9e07afdfb1afebd7f2322'
 
-  url 'http://robofont.com/downloads/RoboFont_1410152315.dmg'
+  url "http://robofont.com/downloads/RoboFont_#{version.after_comma}.dmg"
+  appcast 'http://doc.robofont.com/version-history/',
+          checkpoint: '4c873452fed5d8b3ba9e9d533bd6f5395d520a77dca0284bcd8af7becae27136'
   name 'RoboFont'
-  appcast 'http://doc.robofont.com/appcast',
-          :sha256 => 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
-  homepage 'http://robofont.com'
-  license :other # See http://doc.robofont.com/license-agreement/
+  homepage 'https://doc.robofont.com/'
+
+  depends_on macos: '>= :mavericks'
 
   app 'RoboFont.app'
-
-  depends_on :macos => '>= :mavericks'
 end

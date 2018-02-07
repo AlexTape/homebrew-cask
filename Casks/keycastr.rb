@@ -1,14 +1,14 @@
-cask :v1 => 'keycastr' do
-  version 'v0.9.0'
-  sha256 '001607825b0e2115591b6f40b5700649cc33bfda6a077c4b88ef088a7c0d9546'
+cask 'keycastr' do
+  version '0.9.5'
+  sha256 '42014ded107d922c7374fb2bb897ca34533ea246ac5643555b25136ab8768e69'
 
-  url "https://github.com/keycastr/keycastr/releases/download/#{version}/KeyCastr.app.zip"
-  appcast 'https://github.com/keycastr/keycastr/releases.atom'
+  url "https://github.com/keycastr/keycastr/releases/download/v#{version}/KeyCastr.app.zip"
+  appcast 'https://github.com/keycastr/keycastr/releases.atom',
+          checkpoint: '909822e4182c11b8f7e4c2e3de7c3e997edb57b39a3bdc9a9b72c5b31a7d8717'
   name 'KeyCastr'
   homepage 'https://github.com/keycastr/keycastr'
-  license :bsd
-
-  app 'KeyCastr.app'
 
   accessibility_access true
+
+  app 'KeyCastr.app'
 end

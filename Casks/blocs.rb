@@ -1,13 +1,15 @@
-cask :v1 => 'blocs' do
-  version :latest
-  sha256 :no_check
+cask 'blocs' do
+  version '2.4.5'
+  sha256 '32c85caf6e9f66727d37515ba3063808e31821b9635b8ed77a92e163fbbcadca'
 
-  url 'http://blocsapp.com/trial-app/BlocsApp.zip'
+  # uistore.io was verified as official when first introduced to the cask
+  url "http://downloads.uistore.io/blocs/version-#{version.major}/Blocs.zip"
+  appcast "https://uistore.io/blocs/#{version.major}.0/info.xml",
+          checkpoint: '1155f6b4128f243fd46d2822a470acb91f0d8f9049bc8db8e9e7a78813bdcd2d'
   name 'Blocs'
-  appcast 'https://uistore.io/blocs/info.xml',
-          :sha256 => '42e6c855cf37dad70f357a117b08eb02b6c3c165c99f73caa9f9e814505ef8dc'
-  homepage 'http://blocsapp.com/'
-  license :commercial
+  homepage 'https://blocsapp.com/'
 
-  app 'BlocsApp/Blocs.app'
+  auto_updates true
+
+  app 'Blocs.app'
 end

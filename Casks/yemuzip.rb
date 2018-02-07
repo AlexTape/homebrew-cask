@@ -1,12 +1,12 @@
-cask :v1 => 'yemuzip' do
-  version :latest
-  sha256 :no_check
+cask 'yemuzip' do
+  version '2.5'
+  sha256 '9c97ac9a715857dc8679b0e1d7fbddb253b0f56275641be2cd9a47b45bd29727'
 
-  url 'http://www.yellowmug.com/download/YemuZip.dmg'
+  url "http://yellowmug.com/download/YemuZip_#{version}.dmg"
+  appcast 'http://www.yellowmug.com/yemuzip/revision',
+          checkpoint: '68421ea557a4cb920167e06628852d19606182d83080ca5040b2246ee5ba0b87'
   name 'YemuZip'
-  appcast 'http://yellowmug.com/yemuzip/appcast.xml'
-  homepage 'http://www.yellowmug.com/yemuzip'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'http://www.yellowmug.com/yemuzip/'
 
   app 'YemuZip.app'
 end

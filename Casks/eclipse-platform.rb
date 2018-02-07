@@ -1,14 +1,13 @@
-cask :v1 => 'eclipse-platform' do
-  version '4.5-201506032000'
-  sha256 '953b7ecacb3c84667c616e1b640240de8cf5c045f475d0aebc6179316ed083d6'
+cask 'eclipse-platform' do
+  version '4.7.2,201711300510'
+  sha256 '46b7333b5f9314e6d71c5fef3c4ef92332e921ed583f1ec40f7fb39310601f72'
 
-  url "http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops#{version.to_i}/R-#{version}/eclipse-SDK-#{version.sub(%r{-.*},'')}-macosx-cocoa-x86_64.tar.gz&r=1"
-  name 'Eclipse'
+  url "http://download.eclipse.org/eclipse/downloads/drops#{version.major}/R-#{version.before_comma}-#{version.after_comma}/eclipse-SDK-#{version.before_comma}-macosx-cocoa-x86_64.dmg"
   name 'Eclipse SDK'
-  homepage 'https://eclipse.org'
-  license :eclipse
-  depends_on :macos => '>= :leopard'
-  depends_on :arch => :x86_64
+  homepage 'https://eclipse.org/eclipse/'
 
-  app 'Eclipse.app'
+  depends_on macos: '>= :leopard'
+
+  # Renamed to avoid conflict with other Eclipse.
+  app 'Eclipse.app', target: 'Eclipse Platform.app'
 end

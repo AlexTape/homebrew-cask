@@ -1,12 +1,14 @@
-cask :v1 => 'qbittorrent' do
-  version '3.2.5'
-  sha256 '24cd6d4c4b31a48c15db2c3dad24f0ad001281ca6ca2dfbecc24670ba429a6af'
+cask 'qbittorrent' do
+  version '4.0.3'
+  sha256 '38521093cca0a2eb4332422faf7b425318b60a004d1b2c972a803c44ead1cadd'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/qbittorrent/qbittorrent-#{version}.dmg"
+  # sourceforge.net/qbittorrent was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/qbittorrent/qbittorrent-mac/qbittorrent-#{version}/qbittorrent-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac',
+          checkpoint: '85ac69fc348d4536277a79c5b632b8ddc3cec0329d73133aa6fa02af7b570cb1'
   name 'qBittorrent'
-  homepage 'http://www.qbittorrent.org'
-  license :gpl
+  homepage 'https://www.qbittorrent.org/'
 
-  app 'qBittorrent.app'
+  # Renamed for consistency: app name is different in the Finder and in a shell.
+  app 'qbittorrent.app', target: 'qBittorrent.app'
 end

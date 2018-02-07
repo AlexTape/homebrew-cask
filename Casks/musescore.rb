@@ -1,14 +1,13 @@
-cask :v1 => 'musescore' do
-  version '2.0.2'
-  sha256 '7c32ca882d4dfed6866a13ade88662a8ce882a98ead6f3cb6f80307a91ea8bd7'
+cask 'musescore' do
+  version '2.1'
+  sha256 '251dea5f14b48b87e5cd3aba57bcc9cf0e430e363c0e6b6e741be6356957b3a7'
 
-  # osuosl.org is the official download host per the vendor homepage.
-  url "http://ftp.osuosl.org/pub/musescore/releases/MuseScore-#{version}/MuseScore-#{version}.dmg"
+  # ftp.osuosl.org/pub/musescore was verified as official when first introduced to the cask
+  url "https://ftp.osuosl.org/pub/musescore/releases/MuseScore-#{version.major_minor_patch}/MuseScore-#{version}.dmg"
   name 'MuseScore'
   homepage 'https://musescore.org/'
-  license :gpl
 
-  depends_on :macos => '>= :lion'
+  depends_on macos: '>= :lion'
 
-  app "MuseScore #{version.to_i}.app"
+  app "MuseScore #{version.major}.app"
 end

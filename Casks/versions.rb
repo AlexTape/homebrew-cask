@@ -1,12 +1,12 @@
-cask :v1 => 'versions' do
-  version :latest
-  sha256 :no_check
+cask 'versions' do
+  version '1.4.0-1126'
+  sha256 '2012bbf92bba601e781fbd74a956fe2702f283c3c1017fa1735f3c3f96d2f73f'
 
-  url 'http://versionsapp.com/redirect/versionslatest'
-  appcast 'https://updates.blackpixel.com/updates?app=vs'
+  url "https://cdn.versionsapp.com/releases/Versions-#{version}.zip"
+  appcast 'https://updates.blackpixel.com/updates?app=vs',
+          checkpoint: 'b30875c95642cb07ffebc209298634efbc34650d152a53c511dde8002abea32d'
   name 'Versions'
-  homepage 'http://versionsapp.com/'
-  license :commercial
+  homepage 'https://versionsapp.com/'
 
   app 'Versions.app'
 end

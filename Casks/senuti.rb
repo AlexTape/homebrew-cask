@@ -1,13 +1,12 @@
-cask :v1 => 'senuti' do
-  version '1.3.3'
-  sha256 '23bf22a7c468753ab71a6464d920f05223a093ec17bc9e3a7d3be8ea6913474f'
+cask 'senuti' do
+  version '1.3.5'
+  sha256 'cc7fc7910456affb479c99aa89d3c89122142354200990a27aecdde4dc90bdb7'
 
   url "https://www.fadingred.com/files/senuti/senuti_#{version}.zip"
   appcast 'https://www.fadingred.com/senuti/updates.xml',
-          :sha256 => '119e7b3d8ffb2fdb0a16825318e5e8a707ec416617f0466e6c10785a8758db26'
+          checkpoint: '9887f179cf0aee7a872f1600991d4f76f189a3734e303e7cf1c6c2ae9f9beeff'
   name 'Senuti'
   homepage 'https://www.fadingred.com/senuti/'
-  license :commercial
 
   app 'Senuti.app'
 end

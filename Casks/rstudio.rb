@@ -1,14 +1,30 @@
-cask :v1 => 'rstudio' do
-  version '0.99.489'
-  sha256 'e211c0645540b8c668824b6fecdfd19820fe937c4db4432abc7aba06e7efd9e6'
+cask 'rstudio' do
+  version '1.1.419'
+  sha256 '3af70da34340a9d10eda4f0b765610cbd5d6bfa94236b23692d056361cf8c7b2'
 
-  # rstudio.org is the official download host per the vendor homepage
-  url "http://download1.rstudio.org/RStudio-#{version}.dmg"
+  # rstudio.org was verified as official when first introduced to the cask
+  url "https://download1.rstudio.org/RStudio-#{version}.dmg"
   name 'RStudio'
-  homepage 'http://www.rstudio.com/'
-  license :affero
+  homepage 'https://www.rstudio.com/'
 
   app 'RStudio.app'
 
-  zap :delete => '~/.rstudio-desktop'
+  zap trash: '~/.rstudio-desktop'
+
+  caveats <<~EOS
+    #{token} depends on R.
+    There are different ways to satisfy that dependency. RStudio recommends installing R from The R Project, which is required to install binary R packages, without needing to compile packages from source.
+
+    https://support.rstudio.com/hc/en-us/articles/217799238
+
+    To install the R Project package run:
+
+      brew cask install r-app
+
+    Alternative ways to satisfy the dependency are:
+
+      brew install r
+
+    This requires compiling R packages from source.
+  EOS
 end

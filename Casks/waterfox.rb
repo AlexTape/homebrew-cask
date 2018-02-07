@@ -1,12 +1,18 @@
-cask :v1 => 'waterfox' do
-  version '40.0.2'
-  sha256 '49720ec39019cc7991531677014bbd140062fb72f0d5dbd963f7f14b75da37b6'
+cask 'waterfox' do
+  version '56.0.4'
+  sha256 'd2c481abad3cc1816200b9b1e2cb60377911fa4ab2deb0f5137ad87f528f357c'
 
-  # cloudfront.net is the official download host per the vendor homepage
-  url "https://d1th2p59px32bw.cloudfront.net/releases/osx64/installer/Waterfox%20#{version}%20Setup.dmg"
+  # storage-waterfox.netdna-ssl.com was verified as official when first introduced to the cask
+  url "https://storage-waterfox.netdna-ssl.com/releases/osx64/installer/Waterfox%20#{version}%20Setup.dmg"
   name 'Waterfox'
-  homepage 'https://www.waterfoxproject.org'
-  license :oss
+  homepage 'https://www.waterfoxproject.org/'
 
   app 'Waterfox.app'
+
+  zap trash: [
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.mozilla.waterfox.sfl*',
+               '~/Library/Application Support/Waterfox',
+               '~/Library/Caches/Waterfox',
+               '~/Library/Preferences/org.waterfoxproject.waterfox.plist',
+             ]
 end

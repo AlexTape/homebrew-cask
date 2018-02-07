@@ -1,12 +1,11 @@
-cask :v1 => 'hbuilder' do
-  version :latest
-  sha256 :no_check
+cask 'hbuilder' do
+  version '9.0.1'
+  sha256 'dc8bcc073fe40450ff7cad9f098ba668e2e21066ff0984c6514f3d338a25084c'
 
-  # net.cn is the official download host per the vendor homepage
-  url 'http://download.dcloud.net.cn/HBuilder.6.6.0.macosx_64.tar.gz'
+  # download.dcloud.net.cn was verified as official when first introduced to the cask
+  url "http://download.dcloud.net.cn/HBuilder.#{version}.macosx_64.dmg"
   name 'HBuilder'
-  homepage 'http://dcloud.io/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.dcloud.io/'
 
   app 'HBuilder.app'
 end

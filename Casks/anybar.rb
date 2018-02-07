@@ -1,12 +1,12 @@
-cask :v1 => 'anybar' do
-  version '0.1.3'
-  sha256 'aaf23b72b682fe4db6ea19908a2e0ffceb54c33aa1c551c5de833c56bca74ef6'
+cask 'anybar' do
+  version '0.1.4'
+  sha256 'b245d3ad2c73a10eeef53647a72b0f31a239ef0005656db7fccabea872bb2bd8'
 
   url "https://github.com/tonsky/AnyBar/releases/download/#{version}/AnyBar-#{version}.zip"
-  appcast 'https://github.com/tonsky/AnyBar/releases.atom'
+  appcast 'https://github.com/tonsky/AnyBar/releases.atom',
+          checkpoint: '8542cd0d1d343e2b5d69fd3219475b3db2c3cf81afff3fcc77199b2eabe86b8b'
   name 'AnyBar'
   homepage 'https://github.com/tonsky/AnyBar'
-  license :eclipse
 
   app 'AnyBar.app'
 end

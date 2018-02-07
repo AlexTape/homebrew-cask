@@ -1,18 +1,13 @@
-cask :v1 => 'streamtools' do
+cask 'streamtools' do
   version '0.2.8'
+  sha256 '5ca21f4c4c2091c96c508bb277cb5c022f18a8cd3c53abb1ceb11ca0f6454309'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'de5763ffcd6689d2157ab115e1a3d8a34e85e1e4de7b186f7f5079fe01a5f004'
-    url "https://github.com/nytlabs/streamtools/releases/download/#{version}/st_darwin_386-#{version}.tar.gz"
-    binary "st_darwin_386-#{version}/st"
-  else
-    sha256 '5ca21f4c4c2091c96c508bb277cb5c022f18a8cd3c53abb1ceb11ca0f6454309'
-    url "https://github.com/nytlabs/streamtools/releases/download/#{version}/st_darwin_amd64-#{version}.tar.gz"
-    appcast 'https://github.com/nytlabs/streamtools/releases.atom'
-    binary "st_darwin_amd64-#{version}/st"
-  end
-
+  # github.com/nytlabs/streamtools was verified as official when first introduced to the cask
+  url "https://github.com/nytlabs/streamtools/releases/download/#{version}/st_darwin_amd64-#{version}.tar.gz"
+  appcast 'https://github.com/nytlabs/streamtools/releases.atom',
+          checkpoint: 'd0acf4bf79d2e34d5a936addc9f9bae47a9512337cf76a0eb81dadb55be4d686'
   name 'streamtools'
-  homepage 'https://nytlabs.github.io/streamtools/'
-  license :apache
+  homepage 'http://nytlabs.com/streamtools/'
+
+  binary "st_darwin_amd64-#{version}/st"
 end

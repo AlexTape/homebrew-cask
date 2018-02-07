@@ -1,14 +1,20 @@
-cask :v1 => 'shortcat' do
-  version '0.7.6'
-  sha256 'b78f20a94e0270ea1b0376677c07559db0e91c4ac53227b588adee46f971be1b'
+cask 'shortcat' do
+  version '0.7.8'
+  sha256 'e72cacfdd32db9b97d48e866a447bec4d18f6b4012159069c4de4b0b87e683b9'
 
   url "https://files.shortcatapp.com/v#{version}/Shortcat.zip"
   appcast 'https://shortcatapp.com/updates/appcast.xml',
-          :sha256 => '38804c1de1cceb99418fb8393b57a99d78815c4d87dd850fe6b9acb0a4dc01de'
-  name 'Shortcat'
+          checkpoint: '3bc007d7634d28348b2245d88902ae3d32992d74bd41cbd209e50a389f7a3c2a'
+  name 'Sproutcube Shortcat'
   homepage 'https://shortcatapp.com/'
-  license :commercial
-  tags :vendor => 'Sproutcube'
+
+  accessibility_access true
 
   app 'Shortcat.app'
+
+  zap trash: [
+               '~/Library/Application Support/Shortcat',
+               '~/Library/Cookies/com.sproutcube.Shortcat.binarycookies',
+               '~/Library/Preferences/com.sproutcube.Shortcat.plist',
+             ]
 end

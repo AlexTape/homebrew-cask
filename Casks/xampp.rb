@@ -1,16 +1,18 @@
-cask :v1 => 'xampp' do
-  version '5.6.3-0'
-  sha256 '23cd1b990397958b31e5904a340f416aed98b767a868bbcad7be123f53878828'
+cask 'xampp' do
+  version '7.2.0-0'
+  sha256 'c4f5df49a1a3487d4a24bca6afc736f37b2340da3df8991b075fc99f4c1c6eb3'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/xampp/XAMPP%20Mac%20OS%20X/#{version.sub(%r{-\d+$},'')}/xampp-osx-#{version}-installer.dmg"
+  # downloadsapachefriends.global.ssl.fastly.net/xampp-files was verified as official when first introduced to the cask
+  url "https://downloadsapachefriends.global.ssl.fastly.net/xampp-files/#{version.major_minor_patch}/xampp-osx-#{version}-installer.dmg"
   name 'XAMPP'
-  homepage 'https://www.apachefriends.org/'
-  license :gpl
+  homepage 'https://www.apachefriends.org/index.html'
 
-  installer :script => 'XAMPP.app/Contents/MacOS/osx-intel',
-            :args => [ '--mode', 'unattended' ]
+  installer script: {
+                      executable: 'XAMPP.app/Contents/MacOS/osx-intel',
+                      args:       ['--mode', 'unattended'],
+                      sudo:       true,
+                    }
 
-  uninstall :quit => 'com.bitnami.manager',
-            :delete => '/Applications/XAMPP/'
+  uninstall quit:   'com.bitnami.manager',
+            delete: '/Applications/XAMPP/'
 end

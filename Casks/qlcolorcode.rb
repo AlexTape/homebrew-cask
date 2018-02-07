@@ -1,11 +1,20 @@
-cask :v1 => 'qlcolorcode' do
-  version '2.0.2'
-  sha256 '317eda251ea5af8412401562395d2fbedb2dd915a7d927479cf09ac7251c4074'
+cask 'qlcolorcode' do
+  version '2.0.9'
+  sha256 '2b373ea51148f43a0b7e7feafcf2a5422692d7a03e787afdd3692ec4341bf33f'
 
-  url "https://qlcolorcode.googlecode.com/files/QLColorCode-#{version}.tgz"
+  url "https://github.com/anthonygelibert/QLColorCode/releases/download/release-#{version}/QLColorCode.qlgenerator.zip"
+  appcast 'https://github.com/anthonygelibert/QLColorCode/releases.atom',
+          checkpoint: '59313b59f78db19be800a35d199cc98729d9bf2650f14606a21ec517451ce745'
   name 'QLColorCode'
-  homepage 'https://code.google.com/p/qlcolorcode/'
-  license :oss
+  homepage 'https://github.com/anthonygelibert/QLColorCode'
 
-  qlplugin "QLColorCode-#{version}/QLColorCode.qlgenerator"
+  depends_on formula: 'highlight'
+
+  qlplugin 'QLColorCode.qlgenerator'
+
+  postflight do
+    system_command '/usr/bin/defaults', args: ['write', 'org.n8gray.QLColorCode', 'pathHL', "#{HOMEBREW_PREFIX}/bin/highlight"]
+  end
+
+  zap trash: '~/Library/Preferences/org.n8gray.QLColorCode.plist'
 end

@@ -1,11 +1,12 @@
-cask :v1 => 'airmedia' do
-  version '1.0.4.5'
-  sha256 '28023efa567969d87e5cc701fc8a80341d12d9f0a7e77dc1d946e343ab2bdf09'
+cask 'airmedia' do
+  version '2.0.14'
+  sha256 'f40761616c814d005f4d47bc8b5ef6aba40fdb518c5e40358e2224d24429fb9b'
 
-  url "http://www.crestron.com/downloads/software/airmedia_guest_os_x_#{version}.dmg"
+  url "https://www.crestron.com/downloads/software/airmedia_#{version}_macOS_guest_dmg.zip"
   name 'Crestron AirMedia'
-  homepage 'http://www.crestron.com/airmedia'
-  license :gratis
+  homepage 'https://www.crestron.com/microsites/airmedia-mobile-wireless-hd-presentations'
 
-  app 'AirMedia.app'
+  container nested: "airmedia_#{version}_macOS_guest_dmg/airmedia_#{version}_macOS_guest.dmg"
+
+  app 'Crestron AirMedia.app'
 end

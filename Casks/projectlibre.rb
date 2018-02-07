@@ -1,12 +1,13 @@
-cask :v1 => 'projectlibre' do
-  version '1.5.8'
-  sha256 'efd7d228d2e71a2a5af185d2fe1ddcea4abc55af32188344e06e1871facd0c6b'
+cask 'projectlibre' do
+  version '1.7'
+  sha256 'ca165c27bea9f160cd069e464c3b8a1a3d3bc6f79876d221fb4a88165e0941e7'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/projectlibre/ProjectLibre/#{version}/projectlibre-#{version}.dmg"
+  # sourceforge.net/projectlibre was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/projectlibre/ProjectLibre/#{version}/projectlibre-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/projectlibre/rss?path=/ProjectLibre',
+          checkpoint: '0097cef0c2be756e33fa9c0c73557f1cfe62121e824c08b8cb8ee6c56bc72b08'
   name 'ProjectLibre'
-  homepage 'http://www.projectlibre.org/'
-  license :oss
+  homepage 'https://www.projectlibre.com/'
 
   app 'ProjectLibre.app'
 end

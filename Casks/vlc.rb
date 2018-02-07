@@ -1,16 +1,35 @@
-cask :v1 => 'vlc' do
-  version '2.2.1'
-  sha256 'ef881ca19fc7cc6b7c54699c99c064b9a5d553aa4181d1d1e185758d32405740'
+cask 'vlc' do
+  version '2.2.8'
+  sha256 '4406e025c566c5703ab11e53070d3e399680ddfb8994b60cb753079dffd2a027'
 
   url "https://get.videolan.org/vlc/#{version}/macosx/vlc-#{version}.dmg"
-  gpg "#{url}.asc",
-      :key_id => '65f7c6b4206bd057a7eb73787180713be58d1adc'
   appcast 'http://update.videolan.org/vlc/sparkle/vlc-intel64.xml',
-          :sha256 => '358ea9032ef0df1658c062bfb11ca4336ebf662b64bffec8e059b1e2faa4f788'
-  name 'VLC'
+          checkpoint: '2e8debe5851a85536ff4ef24cff5bbff2cbce7c17bc3902eeccbbf1636c4dc67'
   name 'VLC media player'
   homepage 'https://www.videolan.org/vlc/'
-  license :oss
+  gpg "#{url}.asc", key_id: '65f7c6b4206bd057a7eb73787180713be58d1adc'
+
+  auto_updates true
 
   app 'VLC.app'
+  # shim script (https://github.com/caskroom/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/vlc.wrapper.sh"
+  binary shimscript, target: 'vlc'
+
+  preflight do
+    IO.write shimscript, <<~EOS
+      #!/bin/sh
+      '#{appdir}/VLC.app/Contents/MacOS/VLC' "$@"
+    EOS
+  end
+
+  zap trash: [
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.videolan.vlc.sfl*',
+               '~/Library/Application Support/org.videolan.vlc',
+               '~/Library/Application Support/VLC',
+               '~/Library/Preferences/org.videolan.vlc',
+               '~/Library/Preferences/org.videolan.vlc.plist',
+               '~/Library/Saved Application State/org.videolan.vlc.savedState',
+               '~/Library/Caches/org.videolan.vlc',
+             ]
 end

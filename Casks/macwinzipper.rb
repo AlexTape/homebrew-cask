@@ -1,11 +1,10 @@
-cask :v1 => 'macwinzipper' do
-  version '2.5'
-  sha256 'fc3afd92ecfbde16bbdd388285e16ef8f7aa5f5edf669496115823fef92a0186'
+cask 'macwinzipper' do
+  version '2.5.3'
+  sha256 'f9ac05daef780f8b79557af2a77600a17c97951051a43cf8c93860afd7855818'
 
   url "http://tidajapan.com/files/MacWinZipper-#{version}.dmg?download"
   name 'MacWinZipper'
   homepage 'http://tidajapan.com/macwinzipper'
-  license :commercial
 
   app 'MacWinZipper.app'
 end

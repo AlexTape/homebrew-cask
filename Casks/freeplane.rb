@@ -1,11 +1,12 @@
-cask :v1 => 'freeplane' do
-  version '1.3.15'
-  sha256 '0a684fa354fe39051cc12af91b78d0acb0eb7279d6bb3fe4da21aba6d7b7de1d'
+cask 'freeplane' do
+  version '1.6.13'
+  sha256 '21fea08960f65be82a005998b11e294dfa505245ebb686a10ff1dc804f8c11d2'
 
-  url "http://downloads.sourceforge.net/project/freeplane/freeplane%20stable/freeplane_app-#{version}.dmg"
+  url "https://downloads.sourceforge.net/freeplane/freeplane%20stable/freeplane_app_jre-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/freeplane/rss?path=/freeplane%20stable',
+          checkpoint: 'ebceb77339cd382a5ea45fd5753271c75d66b24eef65622ddf3ca2c539824cda'
   name 'Freeplane'
   homepage 'http://freeplane.sourceforge.net/'
-  license :gpl
 
   app 'Freeplane.app'
 end

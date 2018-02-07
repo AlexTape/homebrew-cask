@@ -1,12 +1,13 @@
-cask :v1 => 'liteide' do
-  version '27.2.1'
-  sha256 '4f142d79cd7161ff7e51cb38a0c5e60242315456bebe23b3ecaaf54227cd01ff'
+cask 'liteide' do
+  version '33.1'
+  sha256 '8cdf02a057f802c14e6c70d88414930489c13c77a26427f3e1333e2e66ef9616'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/liteide/X#{version}/liteidex#{version}.macosx-qt5.zip"
+  # github.com/visualfc/liteide was verified as official when first introduced to the cask
+  url "https://github.com/visualfc/liteide/releases/download/x#{version}/liteidex#{version}.macosx-qt5.zip"
+  appcast 'https://github.com/visualfc/liteide/releases.atom',
+          checkpoint: '8f33190cbde5cfb5d7387a74a7fd96b9883f7eaab015590a6d1f0270452cf0a9'
   name 'LiteIDE'
-  homepage 'https://github.com/visualfc/liteide'
-  license :gpl
+  homepage 'http://liteide.org/'
 
-  app 'LiteIDE.app'
+  app 'liteide/LiteIDE.app'
 end
